@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/fastbootstrap@2.2.0/dist/css/fastbootstrap.min.css
+"
+    />
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+      }
+      body {
+        background-color: aqua;
+      }
+      .container {
+        border: 1px solid black;
+        width: 95%;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .quotes {
+        font-size: 3rem;
+        width: 900px;
+        height: 450px;
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 0 50px;
+        color: gray;
+        background-color: #f4edea;
+        border: 10px solid#f4d1ae;
+      }
+      .quotes p {
+        font-size: 1.5rem;
+      }
+      .quotes h3 {
+        font-size: 1.5rem;
+      }
+      @media (max-width: 480px) {
+        .quotes p .quotes h3 {
+          font-size: 1rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="quotes">
+        <p id="quote">Loading...</p>
+        <h3 id="author">Loading...</h3>
+      </div>
+    </div>
+    <div class="btnn" style="text-align: center">
+      <button onclick="generateQuote()" type="button" class="btn btn-light">
+        Light
+      </button>
+    </div>
+    <script>
+      const quote = document.getElementById("quote");
+      const author = document.getElementById("author");
+      const api_url = "https://api.quotable.io/random";
+      async function generateQuote(url) {
+        const response = await fetch(url);
+        var data = await response.json();
+        quote.innerHTML = data.content;
+        author.innerHTML = data.author;
+      }
+      generateQuote(api_url);
+    </script>
+  </body>
+</html>
